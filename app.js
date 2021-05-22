@@ -19,7 +19,7 @@ async function app(state, update, view){
             const leftUnit=await listFormUnits(model)
             const rightUnit=await listFormUnits2(model)
             console.log(leftValue["temperatureToConvert"],"qweqwe")
-            const updatedModel =update(leftValue["temperatureToConvert"],leftUnit['From'],rightUnit['To'],model)
+            const updatedModel =update(leftValue["temperatureToConvert"],leftUnit['From'],rightUnit['To'],model,1)
             state = {
                 ...state,
                 model: updatedModel,
@@ -32,7 +32,7 @@ async function app(state, update, view){
             const rightUnit=await listFormUnits(model)
             const leftUnit=await listFormUnits2(model)
 
-            const updatedModel =update(rightValue["temperatureToConvert"],rightUnit['From'],leftUnit['To'],model)
+            const updatedModel =update(rightValue["temperatureToConvert"],rightUnit['From'],leftUnit['To'],model,2)
             state = {
                 ...state,
                 model: updatedModel,
