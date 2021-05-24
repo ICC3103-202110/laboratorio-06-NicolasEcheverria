@@ -1,6 +1,23 @@
 const { inputForm } = require("./view")
 
+function process (temp,unit1,unit2){
+    if (unit1=="Celsius"&&unit2=="Kelvin"){
+        return Number(temp)+273.15
 
+    }else if(unit1=="Celsius"&&unit2=="Farenheit"){
+        return (Number(temp)*(9/5))+32
+    }else if(unit1=="Kelvin"&&unit2=="Celsius"){
+        return Number(temp)-273.15
+    }else if (unit1=="Kelvin"&&unit2=="Farenheit"){
+        return Number(temp)*(9/5)-459.67
+    }else if (unit1=="Farenheit"&&unit2=="Celsius"){
+        return (Number(temp)-32)*(5/9)
+    }else if(unit1=="Farenheit"&&unit2=="Kelvin"){
+        return (Number(temp)-32)*(5/9)+273.15
+    }else {    
+        return temp
+}
+}
 
 
 
@@ -11,7 +28,7 @@ function update(temp,unit1,unit2,model,source){
 
         const leftValue2=temp
         const leftUnit2="Celsius"
-        const rightValue2=Number(temp)+273.15
+        const rightValue2= process(temp,unit1,unit2)
         const rightUnit2="Kelvin"
         if (source ==1){
         return {
@@ -37,7 +54,7 @@ function update(temp,unit1,unit2,model,source){
         }else if(unit1=="Celsius"&&unit2=="Farenheit"){
             const leftValue2=temp
             const leftUnit2="Celsius"
-            const rightValue2=(Number(temp)*(9/5))+32
+            const rightValue2=process(temp,unit1,unit2)
             const rightUnit2="Farenheit"
             if (source ==1){
             return {
@@ -61,7 +78,7 @@ function update(temp,unit1,unit2,model,source){
         }else if(unit1=="Kelvin"&&unit2=="Celsius"){
             const leftValue2=temp
             const leftUnit2="Kelvin"
-            const rightValue2=Number(temp)-273.15
+            const rightValue2=process(temp,unit1,unit2)
             const rightUnit2="Celsius"
             if (source ==1){
                 return {
@@ -85,7 +102,7 @@ function update(temp,unit1,unit2,model,source){
         }else if (unit1=="Kelvin"&&unit2=="Farenheit"){
             const leftValue2=temp
             const leftUnit2="Kelvin"
-            const rightValue2=Number(temp)*(9/5)-459.67
+            const rightValue2=process(temp,unit1,unit2)
             const rightUnit2="Farenheit"
             if (source ==1){
                 return {
@@ -109,7 +126,7 @@ function update(temp,unit1,unit2,model,source){
         }else if (unit1=="Farenheit"&&unit2=="Celsius"){
             const leftValue2=temp
             const leftUnit2="Farenheit"
-            const rightValue2=(Number(temp)-32)*(5/9)
+            const rightValue2=process(temp,unit1,unit2)
             const rightUnit2="Celsius"
             if (source ==1){
                 return {
@@ -135,7 +152,7 @@ function update(temp,unit1,unit2,model,source){
         }else if(unit1=="Farenheit"&&unit2=="Kelvin"){
             const leftValue2=temp
             const leftUnit2="Farenheit"
-            const rightValue2=(Number(temp)-32)*(5/9)+273.15
+            const rightValue2=process(temp,unit1,unit2)
             const rightUnit2="Kelvin"
             if (source ==1){
                 return {
@@ -160,7 +177,7 @@ function update(temp,unit1,unit2,model,source){
         }else {
             const leftValue2=temp
             const leftUnit2=unit1
-            const rightValue2=temp
+            const rightValue2=process(temp,unit1,unit2)
             const rightUnit2=unit2
             if (source ==1){
                 return {
